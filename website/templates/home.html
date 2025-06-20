@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{%block title%}Home{%endblock%}
+{% block title %}Home{% endblock %}
 
-{% block content%}
+{% block content %}
 <h1 align="center">Notes</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for note in user.notes %}
   <li class="list-group-item">
     {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{note.id}})">
+    <button type="button" class="close" onclick="deleteNote({{ note.id }})">
       <span aria-hidden="true">&times;</span>
     </button>
   </li>
@@ -20,4 +20,5 @@
         <button type="submit" class="btn btn-primary">Add Note</button>
     </div>
 </form>
-{%endblock%} 
+{% endblock %}
+
