@@ -3,18 +3,38 @@
 
 {% block content%}
 <h1 align="center">Notes</h1>
+<div class="mb-3">
+  Categories:
+  <a href="/">All</a>
+  {% for cat in categories %}
+    | <a href="/category/{{cat.id}}">{{cat.name}}</a>
+  {% endfor %}
+</div>
 <ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
+  {% for note in notes %}
   <li class="list-group-item">
-    {{ note.data }}
+    {% if note.category %}[{{ note.category.name }}] {% endif %}{{ note.data }}
     <button type="button" class="close" onClick="deleteNote({{note.id}})">
       <span aria-hidden="true">&times;</span>
     </button>
   </li>
   {% endfor %}
 </ul>
-<form method="POST">
+<form method="POST" class="mt-3">
     <textarea name="note" id="note" class="form-control"></textarea>
+    <div class="form-row mt-2">
+      <div class="col">
+        <select class="form-control" name="category_select">
+          <option value="" selected>Select category</option>
+          {% for cat in categories %}
+            <option value="{{cat.id}}">{{cat.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col">
+        <input type="text" name="category_new" class="form-control" placeholder="New category" />
+      </div>
+    </div>
     <br />
     <div class="center">
         <button type="submit" class="btn btn-primary">Add Note</button>

@@ -1,12 +1,20 @@
-from . import db 
+from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+
+
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    notes = db.relationship('Note', backref='category', lazy=True)
 
 class Note(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     data = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone=True),default=func.now())
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
 
 class User(db.Model, UserMixin):
@@ -15,4 +23,5 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     firstName = db.Column(db.String(150))
     notes = db.relationship('Note')
+    categories = db.relationship('Category')
 
