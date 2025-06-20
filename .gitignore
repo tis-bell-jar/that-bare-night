@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+website/database.db
+.flaskenv
+venv/
+flask/
+coverage*/
+.pytest_cache/
+
