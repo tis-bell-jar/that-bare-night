@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-import os
 from flask_login import LoginManager
 
 db = SQLAlchemy()
@@ -9,7 +8,7 @@ DB_NAME = 'database.db'
 
 def create_app():
     app=Flask(__name__)
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'aldskfhlsd lakdshflk')
+    app.config['SECRET_KEY'] = 'aldskfhlsd lakdshflk'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{path.join(path.dirname(path.abspath(__file__)), DB_NAME)}'
     db.init_app(app)
 
