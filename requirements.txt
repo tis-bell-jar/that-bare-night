@@ -2,3 +2,5 @@ flask
 Flask-SQLAlchemy
 flask-login
 gunicorn==20.1.0
+markdown
+bleach
