@@ -1,57 +1,64 @@
 # Flask Notes Web Application
 
-## Live-link https://notesapp-rad4.onrender.com
+A simple notes app built with Flask. Users can create an account, log in and manage plain text notes. Data is stored in a local SQLite database via SQLAlchemy.
 
-The Flask Notes Web Application is a feature-rich web platform designed to provide users with a convenient and efficient way to create, organize, and manage their notes. Built using Flask, SQLAlchemy, Jinja, and Python, this application offers a seamless user experience combined with robust functionality.
+## Live site
 
-## Key Features:
+<https://notesapp-rad4.onrender.com>
 
-1. User Authentication and Authorization:
+## Current features
 
-* Users can register and create their accounts.
-* Secure login and password hashing ensure data privacy.
-* Role-based access control allows administrators to manage user permissions.
+- User registration and authentication using **Flask-Login**.
+- Add new notes from the home page.
+- Delete existing notes without leaving the page (uses a small JavaScript helper).
+- Bootstrap based templates for basic styling.
 
-2. Note Creation and Organization:
+## Planned features
 
-* Users can create, edit, and delete notes.
-* Notes can be organized into categories or tags for easy navigation.
-* Rich text editing capabilities enable users to format their notes.
+The repository contains placeholders for upcoming work:
 
-3. Search and Filtering:
+- Ability to tag notes (`tag_api.py`).
+- Editing existing notes.
+- Unit tests for the API.
 
-* Users can search for specific notes using keywords or tags.
-* Filtering options help users narrow down their search results.
+## Setup
 
-4. Collaboration and Sharing:
+1. Create a virtual environment and install dependencies:
 
-* Users can share notes with other registered users.
-* Collaborative editing allows multiple users to work on the same note simultaneously.
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
 
-5. Reminders and Notifications:
+2. Set required environment variables:
 
-* Users can set reminders for important notes.
-* Notification system informs users about upcoming reminders or shared note activities.
+   - `SECRET_KEY` – secret value used by Flask to sign session cookies. If not set,
+     a default development key is used from `website/__init__.py`.
+   - `FLASK_APP` – set to `main.py` when using the `flask run` command.
+   - `FLASK_ENV` – optional, set to `development` to enable debug mode.
 
-6. Responsive Design:
+   Example:
 
-* The web application is built with responsive design principles, ensuring optimal user experience across different devices.
+   ```bash
+   export SECRET_KEY="change-me"
+   export FLASK_APP=main.py
+   export FLASK_ENV=development
+   ```
 
-7. Data Persistence and Scalability:
+3. Initialize the SQLite database and start the development server:
 
-* SQLAlchemy is used as the Object-Relational Mapping (ORM) tool, allowing seamless database interactions.
-* The application is designed to handle a large number of users and notes without compromising performance.
+   ```bash
+   python main.py
+   ```
 
-8. Customizable User Interface:
+   or with `flask run` after exporting `FLASK_APP`.
 
-* Jinja templating engine allows for flexible and dynamic web page rendering.
-* Users can personalize the appearance of their notes and the overall theme of the application.
+## Running tests
 
-## Technical Stack:
+Tests are written with `pytest` (currently mostly placeholders). Run them with:
 
-Flask: A lightweight web framework for Python.<br>
-SQLAlchemy: An Object-Relational Mapping (ORM) library for database management.<br>
-Jinja: A templating engine for rendering dynamic web pages.<br>
-Python: The programming language used for the back-end logic.
+```bash
+pytest -q
+```
 
-The Flask Notes Web Application aims to provide users with a user-friendly and efficient platform for note-taking and organization. With its extensive set of features and a robust technical stack, it empowers users to stay organized, collaborate, and easily access their notes from any device with an internet connection.
