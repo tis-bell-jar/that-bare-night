@@ -23,13 +23,14 @@ class Position(Enum):
 class Note(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     data = db.Column(db.String(10000))
+    subject = db.Column(db.String(150), default="General")
     date = db.Column(db.DateTime(timezone=True),default=func.now())
     position = db.Column(db.Integer, default=0)
     color = db.Column(db.String(20), default=Color.YELLOW.value)
     position_class = db.Column(db.String(20), default=Position.LEFT.value)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
 
-    ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS + [
+    ALLOWED_TAGS = list(bleach.sanitizer.ALLOWED_TAGS) + [
         "p",
         "pre",
         "span",
