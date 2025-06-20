@@ -1,0 +1,3 @@
+# ignore the SQLite database
+website/database.db
+# (and any other binary or build artifacts)
