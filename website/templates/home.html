@@ -5,7 +5,7 @@
 <h1 align="center">Notes</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for note in notes %}
-  <li class="list-group-item" data-id="{{note.id}}">
+  <li class="list-group-item" data-id="{{note.id}}" style="background-color: {{ note.color }};">
     {{ note.data }}
     <button type="button" class="close" onClick="deleteNote({{note.id}})">
       <span aria-hidden="true">&times;</span>
@@ -15,6 +15,14 @@
 </ul>
 <form method="POST">
     <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <input
+      type="color"
+      name="color"
+      id="color"
+      value="#ffff00"
+      class="form-control form-control-color"
+    />
     <br />
     <div class="center">
         <button type="submit" class="btn btn-primary">Add Note</button>
