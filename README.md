@@ -16,6 +16,7 @@ The Flask Notes Web Application is a feature-rich web platform designed to provi
 
 * Users can create, edit, and delete notes.
 * Notes can be organized into categories or tags for easy navigation.
+* Notes can be reordered via drag-and-drop using SortableJS.
 * Rich text editing capabilities enable users to format their notes.
 
 3. Search and Filtering:
@@ -55,3 +56,7 @@ Jinja: A templating engine for rendering dynamic web pages.<br>
 Python: The programming language used for the back-end logic.
 
 The Flask Notes Web Application aims to provide users with a user-friendly and efficient platform for note-taking and organization. With its extensive set of features and a robust technical stack, it empowers users to stay organized, collaborate, and easily access their notes from any device with an internet connection.
+
+## Configuration
+
+The application reads `SECRET_KEY` from the environment. Set the `SECRET_KEY` environment variable to override the default secret key used for Flask session management.
