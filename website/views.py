@@ -13,13 +13,14 @@ views = Blueprint('views',__name__)
 def home():
     if request.method == 'POST':
         note = request.form.get('note')
+        color = request.form.get('color', '#ffff00')
         if len(note)<1:
             flash('Note is too short',category='error')
         else:
             # determine next position for the user's notes
             max_pos = db.session.query(db.func.max(Note.position)).filter_by(user_id=current_user.id).scalar()
             next_pos = (max_pos or 0) + 1
-            new_note = Note(data=note,user_id=current_user.id, position=next_pos)
+            new_note = Note(data=note,user_id=current_user.id, position=next_pos, color=color)
             db.session.add(new_note)
             db.session.commit()
             flash('Note added',category='success')
