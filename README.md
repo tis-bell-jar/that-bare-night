@@ -15,7 +15,7 @@ The Flask Notes Web Application is a feature-rich web platform designed to provi
 2. Note Creation and Organization:
 
 * Users can create, edit, and delete notes.
-* Notes can be organized into categories or tags for easy navigation.
+* Notes can be organized into categories based on subject for easy navigation.
 * Notes can be reordered via drag-and-drop using SortableJS.
 * Rich text editing capabilities enable users to format their notes.
 

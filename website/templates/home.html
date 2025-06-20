@@ -4,17 +4,22 @@
 {% block content%}
 <h1 align="center">Notes</h1>
 <ul class="list-group list-group-flush" id="notes">
-  {% for note in notes %}
-  <li class="list-group-item" data-id="{{note.id}}" style="background-color: {{ note.color }};">
-    <div class="note-body">{{ note.html|safe }}</div>
-    <button type="button" class="close" onClick="deleteNote({{note.id}})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
+  {% for subject, group in notes|groupby('subject') %}
+  <li class="list-group-item active">{{ subject }}</li>
+    {% for note in group %}
+    <li class="list-group-item" data-id="{{note.id}}" style="background-color: {{ note.color }};">
+      <div class="note-body">{{ note.html|safe }}</div>
+      <button type="button" class="close" onClick="deleteNote({{note.id}})">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </li>
+    {% endfor %}
   {% endfor %}
 </ul>
 <form method="POST">
     <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" />
     <br />
     <input
       type="color"
