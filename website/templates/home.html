@@ -4,17 +4,12 @@
 {% block content%}
 <h1 align="center">Notes</h1>
 <ul class="list-group list-group-flush" id="notes">
-  {% for note in notes %}
-  <li class="list-group-item" data-id="{{note.id}}">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{note.id}})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
+ 
   {% endfor %}
 </ul>
 <form method="POST">
     <textarea name="note" id="note" class="form-control"></textarea>
+    <input class="jscolor form-control mt-2" name="color" value="#ffffff">
     <br />
     <div class="center">
         <button type="submit" class="btn btn-primary">Add Note</button>

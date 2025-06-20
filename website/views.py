@@ -8,27 +8,7 @@ import json
 
 views = Blueprint('views',__name__)
 
-@views.route('/',methods=['GET','POST'])
-@login_required
-def home():
-    if request.method == 'POST':
-        note = request.form.get('note')
-        if len(note)<1:
-            flash('Note is too short',category='error')
-        else:
-            # determine next position for the user's notes
-            max_pos = db.session.query(db.func.max(Note.position)).filter_by(user_id=current_user.id).scalar()
-            next_pos = (max_pos or 0) + 1
-            new_note = Note(data=note,user_id=current_user.id, position=next_pos)
-            db.session.add(new_note)
-            db.session.commit()
-            flash('Note added',category='success')
 
-    notes = Note.query.filter_by(user_id=current_user.id).order_by(Note.position).all()
-    return render_template("home.html",user=current_user, notes=notes)
-
-@views.route('/delete-note', methods=['POST'])
-def delete_note():
     note = json.loads(request.data) # this function expects a JSON from the INDEX.js file 
     noteId = note['noteId']
     note = Note.query.get(noteId)
